@@ -37,7 +37,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 ADD start.sh /start.sh
 
-VOLUME ["/srv/owncloud/data"]
+VOLUME ["/srv/owncloud/config", "/srv/owncloud/data"]
 
 EXPOSE 80
 
