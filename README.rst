@@ -1,9 +1,9 @@
 docker-owncloud
 ===============
 
-Docker image with ownCloud and nginx. It uses SQLite as database because it is
-intended for personal use only (one user). It also uses two docker volumes, one
-for config and one for data.
+Docker i386 image with ownCloud and nginx. It uses SQLite as database because
+it is intended for personal use only (one user). It also uses two docker
+volumes, one for config and one for data.
 
 Build
 -----
