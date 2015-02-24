@@ -9,12 +9,14 @@ Build
 -----
 
 ::
+
    docker build -t 'yourusername/owncloud' .
 
 Run
 ---
 
 ::
+
    docker run -d -p 127.0.0.1:9000:80 --name owncloud \
    -v /srv/owncloud/config:/srv/owncloud/config \
    -v /srv/owncloud/data:/srv/owncloud/data eriol/owncloud
