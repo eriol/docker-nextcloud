@@ -17,7 +17,14 @@ volumes, one for config and one for data.
     -v /srv/owncloud/data:/srv/owncloud/data eriol/owncloud
 ```
 
-You should use nginx on the host as reverse proxy::
+For owncloud >= 8.1.0 you need, on the host, to link certificates bundle inside
+config volume:
+
+```shell
+    ln -s /etc/ssl/certs/ca-certificates.crt /srv/owncloud/config/ca-bundle.crt
+```
+
+You should use nginx on the host as reverse proxy:
 
 ```
     server {
