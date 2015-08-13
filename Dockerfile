@@ -18,8 +18,8 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     php5-intl \
     php5-json \
     php5-mcrypt \
-    php5-sqlite
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    php5-sqlite && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD https://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2 /tmp/owncloud.tar.bz2
 RUN sha256sum /tmp/owncloud.tar.bz2 | grep -q ${OWNCLOUD_SHA256SUM} && \
@@ -28,12 +28,12 @@ RUN sha256sum /tmp/owncloud.tar.bz2 | grep -q ${OWNCLOUD_SHA256SUM} && \
     chown -R www-data:www-data /srv/owncloud && \
     rm /tmp/owncloud.tar.bz2
 
-RUN rm -f /etc/nginx/sites-enabled/default
 ADD owncloud.conf /etc/nginx/sites-available/owncloud.conf
-RUN ln -s /etc/nginx/sites-available/owncloud.conf /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/owncloud.conf /etc/nginx/sites-enabled/ && \
+    rm -f /etc/nginx/sites-enabled/default
 
-RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini && \
+    echo "daemon off;" >> /etc/nginx/nginx.conf
 
 ADD start.sh /start.sh
 
