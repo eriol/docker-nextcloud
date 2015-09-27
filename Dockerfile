@@ -1,9 +1,9 @@
 FROM eriol/debian-i386:jessie
 MAINTAINER Daniele Tricoli "eriol@mornie.org"
 
-ENV LAST_UPDATE 2015-07-17
-ENV OWNCLOUD_VERSION 8.1.1
-ENV OWNCLOUD_SHA256SUM 91f39cbb2f542c9f5f949d02f31e6379ce9e3b7b6b4ae7b093c19e81d069c7d1
+ENV LAST_UPDATE 2015-09-28
+ENV OWNCLOUD_VERSION 8.1.3
+ENV OWNCLOUD_SHA256SUM 1c878f8c749c20b9c6b78f33b7b3e75953950b1a9cfac995656a1f608e615773
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
     bzip2 \
