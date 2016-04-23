@@ -8,6 +8,7 @@ ENV OWNCLOUD_SHA256SUM 44c98ffa3b957faf3af884cafa1d88c05762b65452592768a926e2c3c
 RUN apt-get update && apt-get -y --no-install-recommends install \
     bzip2 \
     ca-certificates \
+    cron \
     nginx \
     php5 \
     php5-apcu \
