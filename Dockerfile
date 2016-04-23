@@ -36,6 +36,8 @@ RUN ln -s /etc/nginx/sites-available/owncloud.conf /etc/nginx/sites-enabled/ && 
 RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini && \
     echo "daemon off;" >> /etc/nginx/nginx.conf
 
+ADD crontab /etc/cron.d/owncloud
+
 ADD start.sh /start.sh
 
 VOLUME ["/srv/owncloud/config", "/srv/owncloud/data"]
