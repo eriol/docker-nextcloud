@@ -1,9 +1,9 @@
 FROM eriol/debian-i386:jessie
 MAINTAINER Daniele Tricoli "eriol@mornie.org"
 
-ENV LAST_UPDATE 2016-04-23
-ENV OWNCLOUD_VERSION 9.0.1
-ENV OWNCLOUD_SHA256SUM 44c98ffa3b957faf3af884cafa1d88c05762b65452592768a926e2c3c3a66615
+ENV LAST_UPDATE 2016-11-28
+ENV NEXTCLOUD_VERSION 10.0.1
+ENV NEXTCLOUD_SHA256SUM 39412a28f02fd7ca8c9267b4ccf02ac28c1eb27995d77c06ceb2699375978b25
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
     bzip2 \
@@ -22,25 +22,25 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     php5-sqlite && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD https://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2 /tmp/owncloud.tar.bz2
-RUN sha256sum /tmp/owncloud.tar.bz2 | grep -q ${OWNCLOUD_SHA256SUM} && \
-    tar -xf /tmp/owncloud.tar.bz2 -C /srv && \
-    mkdir /srv/owncloud/data && \
-    chown -R www-data:www-data /srv/owncloud && \
-    rm /tmp/owncloud.tar.bz2
+ADD https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2 /tmp/nextcloud.tar.bz2
+RUN sha256sum /tmp/nextcloud.tar.bz2 | grep -q ${NEXTCLOUD_SHA256SUM} && \
+    tar -xf /tmp/nextcloud.tar.bz2 -C /srv && \
+    mkdir /srv/nextcloud/data && \
+    chown -R www-data:www-data /srv/nextcloud && \
+    rm /tmp/nextcloud.tar.bz2
 
-ADD owncloud.conf /etc/nginx/sites-available/owncloud.conf
-RUN ln -s /etc/nginx/sites-available/owncloud.conf /etc/nginx/sites-enabled/ && \
+ADD nextcloud.conf /etc/nginx/sites-available/nextcloud.conf
+RUN ln -s /etc/nginx/sites-available/nextcloud.conf /etc/nginx/sites-enabled/ && \
     rm -f /etc/nginx/sites-enabled/default
 
 RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini && \
     echo "daemon off;" >> /etc/nginx/nginx.conf
 
-ADD crontab /etc/cron.d/owncloud
+ADD crontab /etc/cron.d/nextcloud
 
 ADD start.sh /start.sh
 
-VOLUME ["/srv/owncloud/config", "/srv/owncloud/data"]
+VOLUME ["/srv/nextcloud/config", "/srv/nextcloud/data"]
 
 EXPOSE 80
 

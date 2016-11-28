@@ -1,5 +1,5 @@
-# /etc/cron.d/owncloud: crontab fragment for owncloud
+# /etc/cron.d/nextcloud: crontab fragment for nextcloud
 # Since version 8.5.0 news app will not update using ajax and webcron so
 # system cron is needed.
 
-*/15  *  *  *  * www-data php -f /srv/owncloud/cron.php
+*/15  *  *  *  * www-data php -f /srv/nextcloud/cron.php
