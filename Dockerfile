@@ -1,9 +1,9 @@
 FROM eriol/debian-i386:jessie
 MAINTAINER Daniele Tricoli "eriol@mornie.org"
 
-ENV LAST_UPDATE 2017-02-23
-ENV NEXTCLOUD_VERSION 11.0.1
-ENV NEXTCLOUD_SHA256SUM 00162bf454914a2acbe6a9ac47c9db9f411b99064f0736b43e73cabbd87f4629
+ENV LAST_UPDATE 2017-08-04
+ENV NEXTCLOUD_VERSION 12.0.0
+ENV NEXTCLOUD_SHA256SUM 1b9d9cf05e657cd564a552b418fbf42d669ca51e0fd1f1f118fe44cbf93a243f
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
     bzip2 \
